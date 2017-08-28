@@ -13,9 +13,38 @@
 
 <p>
   <strong>Answers:</strong>
-  <% if @answer %>
-    <%= @answer.description %>
+  <% if @answers %>
+    <% @answers.each do |answer| %>
+      <p>
+        <strong>User:</strong>
+        <%= answer.user_id %>
+        <strong>Description:</strong>
+        <%= answer.description %>
+      </p>
+    <% end %>
   <% end %>
 </p>
 
+<h1>New Answer</h1>
+
+<%= form_for(@new_answer) do |f| %>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :question_id, :value => @question.id %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :user_id, :value => rand(1..1000) %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Create" %>
+  </div>
+<% end %>
+
 <%= link_to 'Back', questions_path %>
+<%= link_to 'Edit', edit_question_path(@question) %>

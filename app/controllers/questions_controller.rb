@@ -1,15 +1,26 @@
 class QuestionsController < ApplicationController
   def index
-    @questions = Question.all
+    @questions = Question.order("created_at DESC")
   end
 
   def show
     @question = Question.find(params[:id])
-    @answer = Answer.find_by(question_id: params[:id])
+    @answers = Answer.where(question_id: params[:id])
+    @new_answer = Answer.new
   end
 
   def new
     @question = Question.new
+  end
+
+  def edit
+    @question = Question.find(params[:id])
+  end
+
+  def update
+    @question = Question.find(params[:id])
+    @question.update(question_params)
+    redirect_to question_path(@question)
   end
 
   def create
