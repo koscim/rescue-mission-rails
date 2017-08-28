@@ -9,4 +9,13 @@
   <%= @question.description %>
 </p>
 
+<br />
+
+<p>
+  <strong>Answers:</strong>
+  <% if @answer %>
+    <%= @answer.description %>
+  <% end %>
+</p>
+
 <%= link_to 'Back', questions_path %>
