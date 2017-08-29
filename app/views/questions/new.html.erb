@@ -8,7 +8,11 @@
 
   <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_field :description %>
+    <%= f.text_area :description, size: "70x10" %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :user_id, :value => rand(1..1000) %>
   </div>
 
   <div class="actions">

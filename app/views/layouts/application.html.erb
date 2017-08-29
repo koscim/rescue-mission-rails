@@ -9,6 +9,17 @@
   </head>
 
   <body>
+    <div class="topnav" id="myTopnav">
+      <%= link_to 'New Question', new_question_path %>
+      <ul class="top-bar-section">
+        <% if current_user %>
+          Signed in as <%= current_user.username %>
+          <%= link_to "Sign out", signout_path, id: "sign_out" %>
+        <% else %>
+          <%= link_to "Sign in with Github", "/auth/github", id: "sign_in" %>
+        <% end %>
+      </ul>
+    </div>
     <%= yield %>
   </body>
 </html>
